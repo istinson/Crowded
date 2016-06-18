@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node ./src/server/server.js",
     "dev": "nodemon ./src/server/server.js",
-    "build": "webpack --watch",
+    "build": "webpack",
     "test": "mocha"
   },
   "repository": {
