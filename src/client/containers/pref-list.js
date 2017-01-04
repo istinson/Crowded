@@ -14,17 +14,15 @@ class PrefList extends Component {
     this.getCoords = this.getCoords.bind(this);
   }
 
-  onPrefClick(event) {
-    this.props.setPreferences(event.target.value);
-    let flag = this.props.pref.pref[event.target.value];
-    if (flag)  {
-      event.target.className = 'mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone clicked';
-      flag === false;
+  onPrefClick({ target, target: { dataset: { value } } } ) {
+    this.props.setPreferences(value);
+    if(this.props.pref.pref[value]) {
+      target.className = 'mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone clicked';
     } else {
-      event.target.className = 'mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked';
-      flag === true;
+      target.className = 'mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked';
     }
   }
+
   getCoords() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -34,9 +32,11 @@ class PrefList extends Component {
       console.log("Sorry your browser is not supporting Geo Location");
     }
   }
+
   componentDidMount() {
     this.getCoords();
   }
+
   onPrefSubmit() { 
     if(this.props.term === false) {
       setTimeout(this.onPrefSubmit, 200);
@@ -45,6 +45,7 @@ class PrefList extends Component {
       browserHistory.push('/cafes')
     }    
   }
+
   onNeighborhoodChange(props) {
     browserHistory.push('/neighborhood')
   }
@@ -63,31 +64,31 @@ class PrefList extends Component {
           </div>
         </div>
         <div className="mdl-grid">
-          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" value='coffeeQuality' onClick={this.onPrefClick}>
+          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" data-value='coffeeQuality' onClick={this.onPrefClick}>
             Coffee
           </div>
-          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" value='ambiance' onClick={this.onPrefClick}>
+          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" data-value='ambiance' onClick={this.onPrefClick}>
             Ambiance
           </div>
-          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" value='rating' onClick={this.onPrefClick}>
+          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" data-value='rating' onClick={this.onPrefClick}>
             Rating
           </div>
-          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" value='seats' onClick={this.onPrefClick}>
+          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" data-value='seats' onClick={this.onPrefClick}>
             Seats
           </div>
-          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" value='outlets' onClick={this.onPrefClick}>
+          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" data-value='outlets' onClick={this.onPrefClick}>
             Outlets
           </div>
-          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" value='bathroomQuality' onClick={this.onPrefClick}>
+          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" data-value='bathroomQuality' onClick={this.onPrefClick}>
             Bathrooms
           </div>
-          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" value='line' onClick={this.onPrefClick}>
+          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" data-value='line' onClick={this.onPrefClick}>
             Line
           </div>
-          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" value='noise' onClick={this.onPrefClick}>
+          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" data-value='noise' onClick={this.onPrefClick}>
             Noise
           </div>
-          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" value='price' onClick={this.onPrefClick}>
+          <div className="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone unclicked" data-value='price' onClick={this.onPrefClick}>
             Price
           </div>
         </div>
