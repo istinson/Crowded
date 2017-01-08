@@ -16,8 +16,9 @@ class PrefList extends Component {
         this.props.fetchCoordinates(position);
       });
     } else {
-      //Do I want to redirect to the neighborhood route?
+      //Redirect to the neighborhood route
       console.log("Sorry your browser is not supporting Geo Location");
+      this.context.router.push('/neighborhood');
     }
   }
 
@@ -25,7 +26,7 @@ class PrefList extends Component {
     this.getCoords.bind(this)();
   }
   
-  onPrefClick({ target, target: { dataset: { value } } } ) {
+  onPrefClick({ target, target: { dataset: { value } } }) {
     this.props.setPreferences(value);
     const squareClass = 'mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone';
     if(this.props.pref.pref[value]) {
@@ -35,17 +36,13 @@ class PrefList extends Component {
     }
   }
 
-  onPrefSubmit() { 
+  onPrefSubmit() {
     if(this.props.term === false) {
       setTimeout(this.onPrefSubmit, 200);
     } else {
       this.props.fetchCafeListByGeoloc(this.props.term);
       this.context.router.push('/cafes');
     }    
-  }
-
-  onNeighborhoodChange() {
-    this.context.router.push('/neighborhood');
   }
 
   render() {
@@ -58,8 +55,8 @@ class PrefList extends Component {
           <div className="small-print-button">
             <button type="submit" 
                     className="mdl-button mdl-button--raised mdl-button--accent mdl-js-button mdl-js-ripple-effect" 
-                    onClick={this.onNeighborhoodChange.bind(this)}>
-              Choose Neighborhood
+                    onClick={this.getCoords.bind(this)}>
+              Update Location
             </button>
           </div>
           <div className="search-button">
