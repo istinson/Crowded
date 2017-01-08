@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchCafeListByGeoloc } from '../actions/cafe-api';
-import { setNeighborhood, setPreferences, fetchCoordinates } from '../actions/index';
+import { setPreferences, fetchCoordinates } from '../actions/index';
 
 class PrefList extends Component {
 
@@ -16,9 +16,8 @@ class PrefList extends Component {
         this.props.fetchCoordinates(position);
       });
     } else {
-      //Redirect to the neighborhood route
+      // add alert to choose neighborhood from dropdown menu
       console.log("Sorry your browser is not supporting Geo Location");
-      this.context.router.push('/neighborhood');
     }
   }
 
@@ -126,7 +125,7 @@ function mapStateToProps(state) {
   })
 }
 function mapDispachToProps(dispatch) {
-  return bindActionCreators({fetchCafeListByGeoloc, setPreferences, setNeighborhood, fetchCoordinates}, dispatch);
+  return bindActionCreators({fetchCafeListByGeoloc, setPreferences, fetchCoordinates}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispachToProps)(PrefList);

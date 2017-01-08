@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import _ from 'lodash';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchData, updateData, addFavorite, fetchJoin} from '../actions/cafe-db';
 import {pullCafeForForm} from '../actions/index';
-import {Link, browserHistory} from 'react-router';
+import {browserHistory} from 'react-router';
 import {Accordion, AccordionItem} from 'react-sanfona';
 import {CafeField} from '../components/cafe-field';
 import AccordionData from '../components/accordion';
@@ -198,7 +197,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({fetchCafeListByGeoloc, fetchData, updateData, fetchCoordinates, pullCafeForForm, addFavorite, fetchJoin}, dispatch);
+  return bindActionCreators({
+    fetchCafeListByGeoloc, orderCafeList, updateData, fetchCoordinates, 
+    pullCafeForForm, addFavorite, fetchJoin, fetchData
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CafeList);

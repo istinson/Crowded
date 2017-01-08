@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, browserHistory} from 'react-router';
+import {browserHistory} from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
@@ -59,9 +59,6 @@ export default class Header extends Component {
       if (value === "3") {
         browserHistory.push('/favorite');
       }
-      if (value === "4") {
-        browserHistory.push('/neighborhood');
-      }
       if (value === "5") {
         browserHistory.push('/');
       }
@@ -95,7 +92,6 @@ export default class Header extends Component {
             <MenuItem value="5" primaryText="Preferences" leftIcon={<Subject />}/>
             <MenuItem value="2" primaryText="Search Results" leftIcon={<List />} />
             <MenuItem value="3" primaryText="Favorites" leftIcon={<ActionGrade />}/>
-            <MenuItem value="4" primaryText="Neighborhood" leftIcon={<SwapVert />}/>
             <MenuItem value="6" primaryText="Settings" leftIcon={<Settings />} />
             <MenuItem value="7" primaryText="About" leftIcon={<GroupWork />}/>
          </IconMenu>
